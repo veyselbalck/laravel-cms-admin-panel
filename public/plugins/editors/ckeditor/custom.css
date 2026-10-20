@@ -1,0 +1,21 @@
+body{
+    padding: 20px;
+}
+
+.editor-d-block{
+    display: block!important;
+}
+
+.container, .row, .col{
+    padding: 10px!important;
+}
+
+.row{
+    margin: 0px!important;
+}
+.cke_show_borders table.cke_show_border, .cke_show_borders table.cke_show_border > tr > td, .cke_show_borders table.cke_show_border > tr > th, .cke_show_borders table.cke_show_border > tbody > tr > td, .cke_show_borders table.cke_show_border > tbody > tr > th, .cke_show_borders table.cke_show_border > thead > tr > td, .cke_show_borders table.cke_show_border > thead > tr > th, .cke_show_borders table.cke_show_border > tfoot > tr > td, .cke_show_borders table.cke_show_border > tfoot > tr > th {
+    border: gray 1px dotted!important;
+}
+.pdf-item{
+    margin-bottom: 0 !important;
+}

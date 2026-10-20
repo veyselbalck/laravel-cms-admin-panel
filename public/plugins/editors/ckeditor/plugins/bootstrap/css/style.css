@@ -1,0 +1,20 @@
+.row, .row .col{
+    padding: 15px!important;
+    position: relative;
+    background-image: none!important;
+}
+.row:before, .row .col:before{
+    position: absolute;
+    font-weight: bold;
+    font-size: 9px;
+    left:1px;
+}
+.row:before{
+    content: "Row";
+    top:0;
+}
+
+.row .col:before{
+    content: "Column";
+    bottom: 0;
+}
