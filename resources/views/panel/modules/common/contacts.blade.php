@@ -1,0 +1,159 @@
+@extends('panel.modules.form')
+
+@section("general-form")
+@endsection
+
+@section("module-form")
+    <ul class="nav nav-tabs tabs-line pt-2" role="tablist">
+        @foreach(getModelLanguages() as $lang)
+            <li class="nav-item">
+                <button type="button" class="nav-link @if($loop->first) active @endif" role="tab" data-bs-toggle="tab"
+                        data-bs-target="#tab-content-{{$lang->code}}"
+                        aria-controls="tab-content-{{$lang->code}}"
+                        aria-selected="true">
+                    {{$lang->name}}
+                </button>
+            </li>
+        @endforeach
+    </ul>
+
+    <div class="card mb-4">
+        <div class="tab-content px-0 pb-0">
+            @foreach(getLanguagesByCodeId() as $lang_code => $lang)
+                @php
+                    $title          = !empty($model["settings"]["translation"][$lang]["title"]) ? $model["settings"]["translation"][$lang]["title"] : '';
+                    $description    = !empty($model["settings"]["translation"][$lang]["description"]) ? $model["settings"]["translation"][$lang]["description"] : '';
+                @endphp
+                <div class="tab-pane fade @if($loop->first) show active @endif" id="tab-content-{{$lang_code}}" data-language-id="{{ $lang }}" role="tabpanel">
+                    <div class="card-body mb-3">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Başlık</label>
+                            <input type="text" name="settings[translation][{{$lang}}][title]"
+                                   id="settings_translation_{{$lang}}_title"
+                                   value="{{ old('settings.translation.'.$lang.'.title', $title) }}" class="form-control" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Açıklama</label>
+                            <input type="text" name="settings[translation][{{$lang}}][description]" value="{{ old('settings.translation.'.$lang.'.description', $description) }}" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+
+    @php
+        $address1   = !empty($model["settings"]["address1"]) ? $model["settings"]["address1"] : '';
+        $address2   = !empty($model["settings"]["address2"]) ? $model["settings"]["address2"] : '';
+
+        $phone1     = !empty($model["settings"]["phone1"]) ? $model["settings"]["phone1"] : '';
+        $phone2     = !empty($model["settings"]["phone2"]) ? $model["settings"]["phone2"] : '';
+        $phone3     = !empty($model["settings"]["phone3"]) ? $model["settings"]["phone3"] : '';
+        $phone4     = !empty($model["settings"]["phone4"]) ? $model["settings"]["phone4"] : '';
+
+        $fax        = !empty($model["settings"]["fax"]) ? $model["settings"]["fax"] : '';
+
+        $email1     = !empty($model["settings"]["email1"]) ? $model["settings"]["email1"] : '';
+        $email2     = !empty($model["settings"]["email2"]) ? $model["settings"]["email2"] : '';
+        $email3     = !empty($model["settings"]["email3"]) ? $model["settings"]["email3"] : '';
+        $email4     = !empty($model["settings"]["email4"]) ? $model["settings"]["email4"] : '';
+
+        $map        = !empty($model["settings"]["map"]) ? $model["settings"]["map"] : '';
+        $directions = !empty($model["settings"]["directions"]) ? $model["settings"]["directions"] : '';
+    @endphp
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row row-cols-sm-2">
+                <div class="form-group mb-3 col">
+                    <label class="form-label">Adres / Satır 1</label>
+                    <input type="text" name="settings[address1]" id="settings_1" value="{{ old('settings.address1', $address1) }}" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3 col">
+                    <label class="form-label">Adres / Satır 2</label>
+                    <input type="text" name="settings[address2]" id="settings_2" value="{{ old('settings.address2', $address2) }}" class="form-control" />
+                </div>
+            </div>
+
+            <hr class="mb-4" />
+
+            <div class="row row-cols-sm-2">
+                <div class="form-group mb-3 col">
+                    <label class="form-label">Telefon 1</label>
+                    <input type="text" name="settings[phone1]" id="phone1" value="{{ old('settings.phone1', $phone1) }}" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3 col">
+                    <label class="form-label">Telefon 2</label>
+                    <input type="text" name="settings[phone2]" id="phone2" value="{{ old('settings.phone2', $phone2) }}" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3 col">
+                    <label class="form-label">Telefon 3</label>
+                    <input type="text" name="settings[phone3]" id="phone3" value="{{ old('settings.phone3', $phone3) }}" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3 col">
+                    <label class="form-label">Telefon 4</label>
+                    <input type="text" name="settings[phone4]" id="phone4" value="{{ old('settings.phone4', $phone4) }}" class="form-control" />
+                </div>
+            </div>
+
+            <hr class="mb-4" />
+
+            <div class="row row-cols-sm-2">
+                <div class="form-group mb-3 col">
+                    <label class="form-label">Faks</label>
+                    <input type="text" name="settings[fax]" id="fax" value="{{ old('settings.fax', $fax) }}" class="form-control" />
+                </div>
+            </div>
+
+            <hr class="mb-4" />
+
+            <div class="row row-cols-sm-2">
+                <div class="form-group mb-3 col">
+                    <label class="form-label">E-Posta 1</label>
+                    <input type="text" name="settings[email1]" id="email1" value="{{ old('settings.email1', $email1) }}" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3 col">
+                    <label class="form-label">E-Posta 2</label>
+                    <input type="text" name="settings[email2]" id="email2" value="{{ old('settings.email2', $email2) }}" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3 col">
+                    <label class="form-label">E-Posta 3</label>
+                    <input type="text" name="settings[email3]" id="email3" value="{{ old('settings.email3', $email3) }}" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3 col">
+                    <label class="form-label">E-Posta 4</label>
+                    <input type="text" name="settings[email4]" id="email4" value="{{ old('settings.email4', $email4) }}" class="form-control" />
+                </div>
+            </div>
+
+            <hr class="mb-4" />
+
+            <div class="form-group mb-3">
+                <label class="form-label">Harita</label>
+                <input type="text" name="settings[map]" id="map" value="{{ old('settings.map', $map) }}" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Yol Tarifi Link</label>
+                <input type="text" name="settings[directions]" id="directions" value="{{ old('settings.directions', $directions) }}" class="form-control" />
+            </div>
+
+        </div>
+    </div>
+@endsection
+
+@section('modals')
+@endsection
+
+@section('styles') @endsection
+@section('scripts')
+@endsection
